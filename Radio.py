@@ -1,3 +1,5 @@
+from ast import Div
+from cProfile import label
 from cgitb import text
 from mimetypes import common_types
 from msilib.schema import ComboBox
@@ -10,7 +12,6 @@ from setuptools import Command
 home = Tk()
 home.title("YBCP Setting") #창 이름 
 home.geometry("340x280+1100+500") #가로 x 세로 +x +y 
-
 # #프레임 씌우기
 # frame = LabelFrame(home, text="sign",relief="solid", bd=1)
 # frame.pack(side="bottom")
@@ -35,20 +36,35 @@ btn2 = Radiobutton(home, text="Alt", value="Alt", variable=select_var)
 btn1.pack()
 btn2.pack()
 
+
+
 def inse():
- e.insert(0, combobox.get())
- e.insert(0, select_var.get())
+ e.configure(text=combobox.get())
+ b.config(text=select_var.get())
 
 '''설정 확인 및 저장버튼'''
 def Allcheck():
   print("기능키=",select_var.get(),"숫자키=", combobox.get())
 # btn3 선택된 기능키 숫자키 확인
-btn3 = Button(home, text="Save", command=inse)
+
+btn3 = Button(home, text="Save",command=inse)
 btn3.pack()
 
-e = Entry(home,state="normal",width=13)
+e = Label(home)
 e.pack()
+# e.grid(column=4, row=4)
+b = Label(home) 
+b.pack()
+# b.grid(column=5, row=4)
+
+
+
+
+# e = Entry(home,state="normal",width=13)
+# e.pack()
 
 
 
 home.mainloop()
+
+
